@@ -1,0 +1,24 @@
+ {
+  "Name": "gameModeName",
+  "Description": "gameModeDescription",
+  "StartClientVersion": 400,
+  "MapFilter": {
+    "IsBlank": false,
+    "HasParcourEnd": false
+  },
+  "MapLists": [
+    {
+      "MapListId": 324,
+      "Name": "Официальные карты"
+    },
+    {
+      "MapListId": 581
+    }
+  ],
+  "Parameters": {
+    "Bool": [
+     {
+     }
+    ]
+  }
+}
