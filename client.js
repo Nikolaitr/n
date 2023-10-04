@@ -26,7 +26,44 @@
  Build.GetContext().LoadMapEnable.Value = true; 
  Build.GetContext().ChangeSpawnsEnable.Value = true; 
  Build.GetContext().BuildRangeEnable.Value = true; 
-  
+
+//
+var yellowView = AreaViewService.GetContext().Get("YellowView");
+yellowView.Color = {r:0};
+yellowView.Tags = ["mak"];
+yellowView.Enable = true;
+var redtrigger = AreaPlayerTriggerService.Get("redTrigger");
+redtrigger.Tags = ["mak"];
+redtrigger.Enable = true;
+redtrigger.OnEnter.Add(function(player){});
+
+SetWaitingMode();
+function SetWaitingMode() {
+yellowView.Color = {r:1}
+ stateProp.Value = WaitingStateValue;
+ mainTimer.Restart(WaitingPlayersTime);
+}
+function SetBuildMode() {
+yellowView.Color = {b:1}
+ stateProp.Value = BuildModeStateValue;
+ mainTimer.Restart(BuildBaseTime);
+}
+function SetMode() {
+yellowView.Color = {g:1}
+ stateProp.Value = ModeStateValue;
+ mainTimer.Restart(ModeTime);
+}
+function SetM() {
+yellowView.Color = {b:1}
+ stateProp.Value = BaseStateValue;
+ mainTimer.Restart(BaseTime);
+}
+function Set() {
+yellowView.Color = {r:1}
+ stateProp.Value = WStateValue;
+ mainTimer.Restart(BaseTime);
+  }
+
  // запрет нанесения урона 
  Damage.GetContext().DamageOut.Value = false; 
   
