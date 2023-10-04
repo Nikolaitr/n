@@ -98,11 +98,11 @@ yellowView.Color = {r:1,b:19}
  red = GameMode.Parameters.GetBool("RedTeam"); 
  blue = GameMode.Parameters.GetBool("BlueTeam"); 
  if (red || !red && !blue) { 
-         Teams.Add("Red", "Teams/Red", { r: 1 }); 
+         Teams.Add("Red", "Teams/Red", { r: 200 }); 
          Teams.Get("Red").Spawns.SpawnPointsGroups.Add(2); 
  } 
  if (blue || !red && !blue) { 
-         Teams.Add("Blue", "Teams/Blue", { b: 1 }); 
+         Teams.Add("Blue", "Teams/Blue", { b: 200 }); 
          Teams.Get("Blue").Spawns.SpawnPointsGroups.Add(1); 
  } 
   
