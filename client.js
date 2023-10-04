@@ -27,13 +27,38 @@
  Build.GetContext().ChangeSpawnsEnable.Value = true; 
  Build.GetContext().BuildRangeEnable.Value = true; 
 
-//
+ //
+ WaitingPlayersTime = 1;
+BuildBaseTime = 1;
+ModeTime = 1;
+BaseTime = 1;
+BTime = 1;
+WaitingStateValue = "Waiting";
+BuildModeStateValue = "BuildMode";
+ModeStateValue = "Mode";
+BaseStateValue = "Base";
+WStateValue = "W";
+mainTimer = Timers.GetContext().Get("Main");
+stateProp = Properties.GetContext().Get("State");
+mainTimer.OnTimer.Add(function() {
+switch (stateProp.Value) {
+case WaitingStateValue:SetBuildMode();
+break;
+case BuildModeStateValue: SetMode();
+break;
+case ModeStateValue : SetM();
+break;
+case BaseStateValue: Set();
+break;
+case WStateValue: SetWaitingMode();
+ }
+});
 var yellowView = AreaViewService.GetContext().Get("YellowView");
 yellowView.Color = {r:0};
-yellowView.Tags = ["mak"];
+yellowView.Tags = ["buy"];
 yellowView.Enable = true;
 var redtrigger = AreaPlayerTriggerService.Get("redTrigger");
-redtrigger.Tags = ["mak"];
+redtrigger.Tags = ["buy"];
 redtrigger.Enable = true;
 redtrigger.OnEnter.Add(function(player){});
 
@@ -49,20 +74,20 @@ yellowView.Color = {b:1}
  mainTimer.Restart(BuildBaseTime);
 }
 function SetMode() {
-yellowView.Color = {g:1}
+yellowView.Color = {r:1,b:1,g:1}
  stateProp.Value = ModeStateValue;
  mainTimer.Restart(ModeTime);
 }
 function SetM() {
-yellowView.Color = {b:1}
+yellowView.Color = {r:0}
  stateProp.Value = BaseStateValue;
  mainTimer.Restart(BaseTime);
 }
 function Set() {
-yellowView.Color = {r:1}
+yellowView.Color = {r:1,b:19}
  stateProp.Value = WStateValue;
- mainTimer.Restart(BaseTime);
-  }
+ mainTimer.Restart(BTime);
+ }
 
  // запрет нанесения урона 
  Damage.GetContext().DamageOut.Value = false; 
