@@ -64,27 +64,27 @@ redtrigger.OnEnter.Add(function(player){});
 
 SetWaitingMode();
 function SetWaitingMode() {
-yellowView.Color = {r:1}
+yellowView.Color = {r:1,g:1}
  stateProp.Value = WaitingStateValue;
  mainTimer.Restart(WaitingPlayersTime);
 }
 function SetBuildMode() {
-yellowView.Color = {b:1}
+yellowView.Color = {r:20,g:100,b:150}
  stateProp.Value = BuildModeStateValue;
  mainTimer.Restart(BuildBaseTime);
 }
 function SetMode() {
-yellowView.Color = {r:1,b:1,g:1}
+yellowView.Color = {r:1,g:1}
  stateProp.Value = ModeStateValue;
  mainTimer.Restart(ModeTime);
 }
 function SetM() {
-yellowView.Color = {r:0}
+yellowView.Color = {r:20,g:100,b:150}
  stateProp.Value = BaseStateValue;
  mainTimer.Restart(BaseTime);
 }
 function Set() {
-yellowView.Color = {r:1,b:19}
+yellowView.Color = {r:1,g:1}
  stateProp.Value = WStateValue;
  mainTimer.Restart(BTime);
  }
