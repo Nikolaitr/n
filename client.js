@@ -150,7 +150,6 @@ player.inventory.MainInfinity.Value = true;
 });
  } 
 }); 
-
  // запрет нанесения урона 
  Damage.GetContext().DamageOut.Value = false; 
   
