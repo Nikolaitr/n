@@ -113,11 +113,11 @@ player.Ui.Hint.Value = " питьевые фонтаны ";
  red = GameMode.Parameters.GetBool("RedTeam"); 
  blue = GameMode.Parameters.GetBool("BlueTeam"); 
  if (red || !red && !blue) { 
-         Teams.Add("Red", "◅ ИГРОКИ ▻", { r: 200 }); 
+         Teams.Add("Red", "<i><B><color=white>◅ RED ▻</color></B></i>", { r: 200 }); 
          Teams.Get("Red").Spawns.SpawnPointsGroups.Add(2); 
  } 
  if (blue || !red && !blue) { 
-         Teams.Add("Blue", "Teams/Blue", { b: 200 }); 
+         Teams.Add("Blue", "<i><B><color=white>◅ BLUE ▻</color></B></i>", { b: 20, b: 100 }); 
          Teams.Get("Blue").Spawns.SpawnPointsGroups.Add(1); 
  } 
   
