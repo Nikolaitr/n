@@ -89,6 +89,21 @@ yellowView.Color = {r:1,g:1}
  mainTimer.Restart(BTime);
  }
 
+ //
+var pvpAreaTag = "y"; 
+var ViewpvpParameterName = "Vivewpvp"; 
+var pvpAreas = AreaService.GetByTag(pvpAreaTag); 
+var pvpView = AreaViewService.GetContext().Get("pvpView"); 
+ pvpView.Color = {r:1}; 
+ pvpView.Tags = [pvpAreaTag]; 
+ pvpView.Enable = true; 
+var pvpTrigger = AreaPlayerTriggerService.Get("pvpTrigger"); 
+pvpTrigger.Tags = [pvpAreaTag]; 
+pvpTrigger.Enable = true; 
+pvpTrigger.OnEnter.Add(function (player){ 
+player.Ui.Hint.Value = " питьевые фонтаны ";
+}); 
+
  // запрет нанесения урона 
  Damage.GetContext().DamageOut.Value = false; 
   
