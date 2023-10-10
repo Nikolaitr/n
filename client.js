@@ -106,7 +106,7 @@ player.Ui.Hint.Value = " питьевые фонтаны ";
 
 // ��������� ���� � ������� �� ������� 
 Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player) 
-if (player.id  == "BDD0364B24FE93D7"  player.id == "5476D6FE9BCC1E6B" player.id == "A1E3E99D7AE32532" ||player.id == ""){ 
+if (player.id  == "BDD0364B24FE93D7"  player.id == "5476D6FE9BCC1E6B" || player.id == "A1E3E99D7AE32532"){ 
 player.inventory.MainInfinity.Value = true; 
 player.inventory.Main.Value = true; 
 player.inventory.Melee.Value = true;  
@@ -133,19 +133,7 @@ player.Build.BuildRangeEnable.Value = true;
 contextedProperties.GetContext(player).SkinType.Value = 0;
 player.Properties.Get("aa").Value = "<B><color=red>false</color></B>";
 player.Properties.Get("pid").Value = "<B><color=red>босс</color></B>";  
-Damage.GetContext(player).DamageIn.Value=false;
- var adminTrigger = AreaPlayerTriggerService.Get("AdminTrigger"); 
-adminTrigger.Tags = ["admin"]; 
-adminTrigger.Enable = true; 
-adminTrigger.OnEnter.Add(function(player) { 
- player.inventory.Main.Value = true;
-player.inventory.MainInfinity.Value = true; 
- player.inventory.Secondary.Value = true; 
- player.inventory.SecondaryInfinity.Value = true; 
- player.inventory.Melee.Value = true;
- player.inventory.Build.Value = true; 
- player.inventory.BuildInfinity.Value = true; 
- player.Build.FlyEnable.Value = true; 
+Damage.GetContext(player).DamageIn.Value=false; 
 });
  } 
 }); 
