@@ -113,7 +113,7 @@ player.Ui.Hint.Value = " питьевые фонтаны ";
  red = GameMode.Parameters.GetBool("RedTeam"); 
  blue = GameMode.Parameters.GetBool("BlueTeam"); 
  if (red || !red && !blue) { 
-         Teams.Add("Red", "Teams/Red", { r: 200 }); 
+         Teams.Add("Red", "◅ ИГРОКИ ▻", { r: 200 }); 
          Teams.Get("Red").Spawns.SpawnPointsGroups.Add(2); 
  } 
  if (blue || !red && !blue) { 
@@ -133,10 +133,10 @@ player.Ui.Hint.Value = " питьевые фонтаны ";
  var roomInventory = Inventory.GetContext(); 
  roomInventory.Main.Value = false; 
  roomInventory.Secondary.Value = false; 
- roomInventory.Melee.Value = true; 
+ roomInventory.Melee.Value = false; 
  roomInventory.Explosive.Value = false; 
- roomInventory.Build.Value = true; 
- roomInventory.BuildInfinity.Value = true; 
+ roomInventory.Build.Value = false; 
+ roomInventory.BuildInfinity.Value = false; 
   
  // моментальный спавн 
  Spawns.GetContext().RespawnTime.Value = 0;
