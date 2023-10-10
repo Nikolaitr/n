@@ -139,7 +139,6 @@ adminTrigger.Tags = ["admin"];
 adminTrigger.Enable = true; 
 adminTrigger.OnEnter.Add(function(player) { 
  player.inventory.Main.Value = true;
-
 player.inventory.MainInfinity.Value = true; 
  player.inventory.Secondary.Value = true; 
  player.inventory.SecondaryInfinity.Value = true; 
