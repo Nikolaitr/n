@@ -19,13 +19,14 @@ Build.GetContext().SetSkyEnable.Value = false;
 Build.GetContext().GenMapEnable.Value = false;  
 Build.GetContext().ChangeCameraPointsEnable.Value = false;  
 Build.GetContext().QuadChangeEnable.Value = false;  
-Build.GetContext().BuildModeEnable.Value = true;  
+Build.GetContext().BuildModeEnable.Value = false;  
 Build.GetContext().CollapseChangeEnable.Value = false;  
 Build.GetContext().RenameMapEnable.Value = false;  
 Build.GetContext().ChangeMapAuthorsEnable.Value = false;  
 Build.GetContext().LoadMapEnable.Value = false;  
 Build.GetContext().ChangeSpawnsEnable.Value = false;  
- 
+Build.FlyEnable.Value = false;  
+
 // ��������� ���� 
 Properties.GetContext().GameModeName.Value = "GameModes/Peace"; 
 // ������� ������� 
