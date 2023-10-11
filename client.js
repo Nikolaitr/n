@@ -13,8 +13,8 @@ BreackGraph.BreackAll = true;
 // ���������� ���������� ������ 
 Ui.GetContext().QuadsCount.Value = true; 
 // ��� ������������ �����  
-Build.GetContext().Pipette.Value = true;  
-Build.GetContext().BalkLenChange.Value = true;  
+Build.GetContext().Pipette.Value = false;  
+Build.GetContext().BalkLenChange.Value = false;  
 Build.GetContext().SetSkyEnable.Value = false;  
 Build.GetContext().GenMapEnable.Value = false;  
 Build.GetContext().ChangeCameraPointsEnable.Value = false;  
@@ -82,7 +82,6 @@ adminTrigger.Tags = ["admin"];
 adminTrigger.Enable = true;  
 adminTrigger.OnEnter.Add(function(player) {  
  player.inventory.Main.Value = true; 
- 
 player.inventory.MainInfinity.Value = true;  
  player.inventory.Secondary.Value = true;  
  player.inventory.SecondaryInfinity.Value = true;  
@@ -107,10 +106,10 @@ Ui.getContext().Hint.Value = "Hint/BuildBase";
 var inventory = Inventory.GetContext(); 
 inventory.Main.Value = false; 
 inventory.Secondary.Value = false; 
-inventory.Melee.Value = true; 
+inventory.Melee.Value = false; 
 inventory.Explosive.Value = false; 
-inventory.Build.Value = true; 
-inventory.BuildInfinity.Value = true; 
+inventory.Build.Value = false; 
+inventory.BuildInfinity.Value = false; 
  
 // ��������� ��� ������ ����� 
 Build.GetContext().BlocksSet.Value = BuildBlocksSet.AllClear; 
@@ -203,13 +202,5 @@ Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player);
 player.Properties.Get("pid").Value = player.Id.slice(0,8) + "                                                                                     " + player.Id.slice(8,16); 
 }); 
  
-// 
-LeaderBoard.PlayerLeaderBoardValues = [ 
- {  
-  Value: "Scores",  
-  DisplayName: "ДЕНЬГИ",  
-  ShortDisplayName: "ДЕНЬГИ"  
- }  
-]; 
 // ������������ ����� 
 Spawns.GetContext().RespawnTime.Value = 0;
