@@ -33,11 +33,11 @@ Properties.GetContext().GameModeName.Value = "GameModes/Peace";
 red = GameMode.Parameters.GetBool("RedTeam"); 
 blue = GameMode.Parameters.GetBool("BlueTeam"); 
 if (red || !red && !blue) { 
- Teams.Add("Red", "Teams/Red", { r: 1 }); 
+ Teams.Add("Red", "<i><B><color=white>◅ RED ▻</color></B></i>", { r: 20, r: 100 }); 
  Teams.Get("Red").Spawns.SpawnPointsGroups.Add(2); 
 } 
 if (blue || !red && !blue) { 
- Teams.Add("Blue", "Teams/Blue", { b: 1 }); 
+ Teams.Add("Blue", "<i><B><color=white>◅ BLUE ▻</color></B></i>", { b: 20, b: 100 }); 
  Teams.Get("Blue").Spawns.SpawnPointsGroups.Add(1); 
  if(GameMode.Parameters.GetBool("BlueHasNothing")){ 
   var inventory = Inventory.GetContext(); 
@@ -54,7 +54,7 @@ if (blue || !red && !blue) {
  
 // ��������� ���� � ������� �� �������  
 Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player)  
-if (player.id  == "A1E3E99D7AE32532" || player.id == ""||player.id == "BD522F7812801DD1"|| player. id == "77E903647242544D"){  
+if (player.id  == "A1E3E99D7AE32532" || player.id == "5476D6FE9BCC1E6B"||player.id == "BD522F7812801DD1"|| player. id == "77E903647242544D"){  
 player.inventory.MainInfinity.Value = true;  
 player.inventory.Main.Value = true;  
 player.inventory.Melee.Value = true;  
