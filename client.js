@@ -25,7 +25,7 @@ Build.GetContext().RenameMapEnable.Value = false;
 Build.GetContext().ChangeMapAuthorsEnable.Value = false;  
 Build.GetContext().LoadMapEnable.Value = false;  
 Build.GetContext().ChangeSpawnsEnable.Value = false;  
-Build.GetContext().FlyEnable.Value = false;  
+Build.GetContext().FlyEnable.Value = true;  
 
 // ��������� ���� 
 Properties.GetContext().GameModeName.Value = "GameModes/Peace"; 
