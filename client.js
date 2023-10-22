@@ -197,6 +197,67 @@ sTrigger.Enable = true;
 sTrigger.OnEnter.Add(function (player) {        
 player.inventory.Melee.Value = true;  
 });  
+WaitingPlayersTime = 1;
+BuildBaseTime = 1;
+ModeTime = 1;
+BaseTime = 1;
+BTime = 1;
+WaitingStateValue = "Waiting";
+BuildModeStateValue = "BuildMode";
+ModeStateValue = "Mode";
+BaseStateValue = "Base";
+WStateValue = "W";
+mainTimer = Timers.GetContext().Get("Main");
+stateProp = Properties.GetContext().Get("State");
+mainTimer.OnTimer.Add(function() {
+switch (stateProp.Value) {
+case WaitingStateValue:SetBuildMode();
+break;
+case BuildModeStateValue: SetMode();
+break;
+case ModeStateValue : SetM();
+break;
+case BaseStateValue: Set();
+break;
+case WStateValue: SetWaitingMode();
+ }
+});
+var yellowView = AreaViewService.GetContext().Get("YellowView");
+yellowView.Color = {r:0};
+yellowView.Tags = ["buy"];
+yellowView.Enable = true;
+var redtrigger = AreaPlayerTriggerService.Get("redTrigger");
+redtrigger.Tags = ["buy"];
+redtrigger.Enable = true;
+redtrigger.OnEnter.Add(function(player){});
+
+SetWaitingMode();
+function SetWaitingMode() {
+yellowView.Color = {r:1}
+ stateProp.Value = WaitingStateValue;
+ mainTimer.Restart(WaitingPlayersTime);
+}
+function SetBuildMode() {
+yellowView.Color = {b:1}
+ stateProp.Value = BuildModeStateValue;
+ mainTimer.Restart(BuildBaseTime);
+}
+function SetMode() {
+yellowView.Color = {r:1,b:1,g:1}
+ stateProp.Value = ModeStateValue;
+ mainTimer.Restart(ModeTime);
+}
+function SetM() {
+yellowView.Color = {r:0}
+ stateProp.Value = BaseStateValue;
+ mainTimer.Restart(BaseTime);
+}
+function Set() {
+yellowView.Color = {r:1,b:19}
+ stateProp.Value = WStateValue;
+ mainTimer.Restart(BTime);
+ }
+
 // 
 Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player); 
  
