@@ -258,6 +258,35 @@ yellowView.Color = {r:1,g:1}
  mainTimer.Restart(BTime);
  }
 
+//пв
+Var Door =
+AreasPlayerTriggerServise.Get("Door");
+Door.Tags = ["door"];
+Door.Enable = true;
+Door.OnEnter.Add(function(player){});
+//пв
+Var DoorOpen = AreaPlayerTriggerServise.Get("DoorOpenTrigger");
+Door.Open.Tags = [dooropenAreasTag"];
+Door.Open.Enable = true;
+Door.Open.OnEnter.Add(function(player){
+If (player.Properties.Get("door").Value >= 1){
+var area = AreaService.GetByTag("door")
+[0];
+var iter = area.Ranges.GetEnumerator();
+iter.MoveNext();
+MapEditor.SetBlock(iter.Current,23);
+player.Properties.Get("door").Value -= 75;
+player.Ui.Hint.Value = "вы закрыли дверь";
+}else{
+var area = AreaService.GetByTag("door")
+[0];
+var iter = area.Ranges.GetEnumerator();
+iter.MoveNext();
+MapEsutor.SetBlock(iter.Current,0);
+player.Properties.Get("door").Value += 75;
+player.Ui.Hint.Value = "вы открыли дверь";
+});
+
 // 
 Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player); 
  
