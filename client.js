@@ -37,7 +37,7 @@ if (red || !red && !blue) {
  Teams.Get("Red").Spawns.SpawnPointsGroups.Add(2); 
 } 
 if (blue || !red && !blue) { 
- Teams.Add("Blue", "<i><B><color=white>◅ BLUE ▻</color></B></i>", { b: 20, b: 100 }); 
+ Teams.Add("Blue", "<i><B><color=white>◅ BLUE ▻</color></B></i>", { r: 255, b: 255, g: 255 }); 
  Teams.Get("Blue").Spawns.SpawnPointsGroups.Add(1); 
  if(GameMode.Parameters.GetBool("BlueHasNothing")){ 
   var inventory = Inventory.GetContext(); 
