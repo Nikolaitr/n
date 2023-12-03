@@ -49,7 +49,13 @@ if (blue || !red && !blue) {
  } 
 } 
  
- 
+// состо€ни€ игры 
+function SetWaitingMode() { 
+ stateProp.Value = WaitingStateValue; 
+ Ui.GetContext().Hint.Value = "<B><color=lime>ОТЕЧЕСТВЕННАЯ ВОЙНА 1812 г.</color></B>"; 
+ Spawns.GetContext().enable = false; 
+ mainTimer.Restart(WaitingPlayersTime); 
+}  
  
  
 // ��������� ���� � ������� �� �������  
