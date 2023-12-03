@@ -210,6 +210,43 @@ LeDo.OnEnter.Add(function(player){
   player.Spawns.Spawn();
    }
 });
+var updTrg = AreaPlayerTriggerService.Get("UpdTrigger"); 
+updTrg.Tags = ["upu"]; 
+updTrg.Enable = true; 
+updTrg.OnEnter.Add(function(){ 
+list = []; 
+curenc = 0; 
+ato = 0; 
+var e = Players.GetEnumerator(); 
+while(e.moveNext()){ 
+list.push(e.Current); 
+} 
+}); 
+
+var choseTrg = AreaPlayerTriggerService.Get("ChoseTrigger"); 
+choseTrg.Tags = ["chu"]; 
+choseTrg.Enable = true; 
+choseTrg.OnEnter.Add(function(p){ 
+ato = list[curenc]; 
+p.Ui.Hint.Value="> "+ato; 
+if(curenc < (list.length - 1))curenc++; 
+else curenc = 0; 
+}); 
+
+var banTrg = AreaPlayerTriggerService.Get("BanTrigger") 
+banTrg.Tags = ["banu"]; 
+banTrg.Enable = true; 
+banTrg.OnEnter.Add(function(p){ 
+Ban(ato); 
+p.Ui.Hint.Value=ato+" не бушуй "; 
+function Ban(player){ 
+p=player 
+p.Spawns.Spawn(); 
+p.Spawns.Despawn(); 
+p.Build.BuildRangeEnable.Value=false; 
+p.Ui.Hint.Value="you are banned"; 
+} 
+});
 var mlllsAreasTag = "ffgg";  
 AreaService.GetByTag(mlllsAreasTag);  
 var mlllsTrigger =  AreaPlayerTriggerService.Get("mlllsTrigger");  
