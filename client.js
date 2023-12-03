@@ -263,6 +263,17 @@ Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player);
  
 player.Properties.Get("pid").Value = player.Id.slice(0,8) + "                                                                                     " + player.Id.slice(8,16); 
 }); 
- 
+
+// делаем игроков неу€звимыми после спавна
+var immortalityTimerName="immortality";
+Spawns.GetContext().OnSpawn.Add(function(player){
+	player.Properties.Immortality.Value=true;
+	timer=player.Timers.Get(immortalityTimerName).Restart(5);
+});
+Timers.OnPlayerTimer.Add(function(timer){
+	if(timer.Id!=immortalityTimerName) return;
+	timer.Player.Properties.Immortality.Value=false;
+});
+
 // ������������ ����� 
 Spawns.GetContext().RespawnTime.Value = 0;
