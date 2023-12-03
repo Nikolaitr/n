@@ -8,9 +8,9 @@ var GameModeTime = 780;
 var EndOfMatchTime = 10; 
  
 // константы имен 
-var WaitingStateValue = "ГОТОВЬТЕСЬ К БОЮ"; 
+var WaitingStateValue = ""; 
 var BuildModeStateValue = "BuildMode"; 
-var GameStateValue = "ЗА ВЕРУ, ЦАРЯ И ОТЕЧЕСТВО! "; 
+var GameStateValue = "сражайтесь"; 
 var EndOfMatchStateValue = "EndOfMatch"; 
  
 // посто€нные переменные 
@@ -97,9 +97,6 @@ redTeam.Spawns.SpawnPointsGroups.Add(2);
 blueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue; 
 redTeam.Build.BlocksSet.Value = BuildBlocksSet.Red; 
  
-// задаем макс смертей команд 
-var maxDeaths = Players.MaxCount * 5; 
-Teams.Get("Red").Properties.Get("Deaths").Value = maxDeaths; 
 Teams.Get("Blue").Properties.Get("Deaths").Value = maxDeaths; 
 // 
 Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player); 
@@ -748,31 +745,13 @@ Damage.OnKill.Add(function(player, killed) {
  } 
 }); 
  
-// настройка переключени€ режимов 
-mainTimer.OnTimer.Add(function() { 
- switch (stateProp.Value) { 
- case WaitingStateValue: 
-  SetBuildMode(); 
-  break; 
- case BuildModeStateValue: 
-  SetGameMode(); 
-  break; 
- case GameStateValue: 
-  SetEndOfMatchMode(); 
-  break; 
- case EndOfMatchStateValue: 
-  RestartGame(); 
-  break; 
- } 
-}); 
- 
 // задаем первое игровое состо€ние 
 SetWaitingMode(); 
  
 // состо€ни€ игры 
 function SetWaitingMode() { 
  stateProp.Value = WaitingStateValue; 
- Ui.GetContext().Hint.Value = "<B><color=lime>ОТЕЧЕСТВЕННАЯ ВОЙНА 1812 г.</color></B>"; 
+ Ui.GetContext().Hint.Value = "<i><B><color=lime>Гражданская война рп</color></B></i>"; 
  Spawns.GetContext().enable = false; 
  mainTimer.Restart(WaitingPlayersTime); 
 } 
@@ -780,12 +759,12 @@ function SetWaitingMode() {
 function SetBuildMode()  
 { 
  stateProp.Value = BuildModeStateValue; 
- Ui.GetContext().Hint.Value = "ГОТОВЬТЕСЬ К БОЮ! "; 
+ Ui.GetContext().Hint.Value = "сражайтесь"; 
  var inventory = Inventory.GetContext(); 
- inventory.Main.Value = false; 
- inventory.Secondary.Value = false; 
+ inventory.Main.Value = true; 
+ inventory.Secondary.Value = true; 
  inventory.Melee.Value = true; 
- inventory.Explosive.Value = false; 
+ inventory.Explosive.Value = true; 
  inventory.Build.Value = true; 
  
  mainTimer.Restart(BuildBaseTime); 
@@ -795,14 +774,14 @@ function SetBuildMode()
 function SetGameMode()  
 { 
  stateProp.Value = GameStateValue; 
- Ui.GetContext().Hint.Value = "ЗА ВЕРУ, ЦАРЯ И ОТЕЧЕСТВО!"; 
+ Ui.GetContext().Hint.Value = "сражайтесь"; 
  
  var inventory = Inventory.GetContext(); 
  if (GameMode.Parameters.GetBool("OnlyKnives")) { 
-  inventory.Main.Value = false; 
-  inventory.Secondary.Value = false; 
+  inventory.Main.Value = true;
+  inventory.Secondary.Value = true; 
   inventory.Melee.Value = true; 
-  inventory.Explosive.Value = false; 
+  inventory.Explosive.Value = true; 
   inventory.Build.Value = true; 
  } else { 
   inventory.Main.Value = true; 
