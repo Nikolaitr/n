@@ -306,6 +306,181 @@ Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player);
  
 player.Properties.Get("pid").Value = player.Id.slice(0,8) + "                                                                                     " + player.Id.slice(8,16); 
 }); 
+ 
+// задаем что выводить в лидербордах 
+LeaderBoard.PlayerLeaderBoardValues = [ 
+ { 
+  Value: "Kills", 
+  DisplayName: "<B><color=orange>УБИЙСТВА</color></B>", 
+  ShortDisplayName: "<B><color=orange>УБИЙСТВА</color></B>" 
+ }, 
+ { 
+  Value: "Deaths", 
+  DisplayName: "<B><color=yellow>СМЕРТИ</color></B>", 
+  ShortDisplayName: "<B><color=yellow>СМЕРТИ</color></B>" 
+ }, 
+ { 
+  Value: "pid", 
+  DisplayName: "<B><color=lime>ID</color></B>", 
+  ShortDisplayName: "<B><color=lime>ID</color></B>" 
+ }, 
+ { 
+  Value: "Scores", 
+  DisplayName: "<B><color=red>ДЕНЬГИ</color></B>", 
+  ShortDisplayName: "<B><color=red>ДЕНЬГИ</color></B>" 
+ } 
+]; 
+LeaderBoard.TeamLeaderBoardValue = { 
+ Value: "Deaths", 
+ DisplayName: "Statistics\Deaths", 
+ ShortDisplayName: "Statistics\Deaths" 
+}; 
+// вес команды в лидерборде 
+LeaderBoard.TeamWeightGetter.Set(function(team) { 
+ return team.Properties.Get("Deaths").Value; 
+}); 
+// вес игрока в лидерборде 
+LeaderBoard.PlayersWeightGetter.Set(function(player) { 
+ return player.Properties.Get("Kills").Value; 
+}); 
+ 
+// задаем что выводить вверху 
+Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "Deaths" }; 
+Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" }; 
+ 
+// разрешаем вход в команды по запросу 
+Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player);}); 
+// спавн по входу в команду 
+Teams.OnPlayerChangeTeam.Add(function(player){ player.Spawns.Spawn()}); 
+ 
+// делаем игроков неу€звимыми после спавна 
+var immortalityTimerName="immortality"; 
+Spawns.GetContext().OnSpawn.Add(function(player){ 
+ player.Properties.Immortality.Value=true; 
+ timer=player.Timers.Get(immortalityTimerName).Restart(5); 
+}); 
+Timers.OnPlayerTimer.Add(function(timer){ 
+ if(timer.Id!=immortalityTimerName) return; 
+ timer.Player.Properties.Immortality.Value=false; 
+}); 
+ 
+// после каждой смерти игрока отнимаем одну смерть в команде 
+Properties.OnPlayerProperty.Add(function(context, value) { 
+ if (value.Name !== "Deaths") return; 
+ if (context.Player.Team == null) return; 
+ context.Player.Team.Properties.Get("Deaths").Value--; 
+}); 
+// если в команде количество смертей занулилось то завершаем игру 
+Properties.OnTeamProperty.Add(function(context, value) { 
+ if (value.Name !== "Deaths") return;
+
+if (value.Value <= 0) SetEndOfMatchMode(); 
+}); 
+ 
+// счетчик спавнов 
+Spawns.OnSpawn.Add(function(player) { 
+ ++player.Properties.Spawns.Value; 
+}); 
+// счетчик смертей 
+Damage.OnDeath.Add(function(player) { 
+ ++player.Properties.Deaths.Value; 
+}); 
+// счетчик убийств 
+Damage.OnKill.Add(function(player, killed) { 
+ if (killed.Team != null && killed.Team != player.Team) { 
+  ++player.Properties.Kills.Value; 
+  player.Properties.Scores.Value += 100; 
+ } 
+}); 
+ 
+// настройка переключени€ режимов 
+mainTimer.OnTimer.Add(function() { 
+ switch (stateProp.Value) { 
+ case WaitingStateValue: 
+  SetBuildMode(); 
+  break; 
+ case BuildModeStateValue: 
+  SetGameMode(); 
+  break; 
+ case GameStateValue: 
+  SetEndOfMatchMode(); 
+  break; 
+ case EndOfMatchStateValue: 
+  RestartGame(); 
+  break; 
+ } 
+}); 
+ 
+// задаем первое игровое состо€ние 
+SetWaitingMode(); 
+ 
+// состо€ни€ игры 
+function SetWaitingMode() { 
+ stateProp.Value = WaitingStateValue; 
+ Ui.GetContext().Hint.Value = "<B><color=lime>ОТЕЧЕСТВЕННАЯ ВОЙНА 1812 г.</color></B>"; 
+ Spawns.GetContext().enable = false; 
+ mainTimer.Restart(WaitingPlayersTime); 
+} 
+ 
+function SetBuildMode()  
+{ 
+ stateProp.Value = BuildModeStateValue; 
+ Ui.GetContext().Hint.Value = "ГОТОВЬТЕСЬ К БОЮ! "; 
+ var inventory = Inventory.GetContext(); 
+ inventory.Main.Value = false; 
+ inventory.Secondary.Value = false; 
+ inventory.Melee.Value = true; 
+ inventory.Explosive.Value = false; 
+ inventory.Build.Value = true; 
+ 
+ mainTimer.Restart(BuildBaseTime); 
+ Spawns.GetContext().enable = true; 
+ SpawnTeams(); 
+} 
+function SetGameMode()  
+{ 
+ stateProp.Value = GameStateValue; 
+ Ui.GetContext().Hint.Value = "ЗА ВЕРУ, ЦАРЯ И ОТЕЧЕСТВО!"; 
+ 
+ var inventory = Inventory.GetContext(); 
+ if (GameMode.Parameters.GetBool("OnlyKnives")) { 
+  inventory.Main.Value = false; 
+  inventory.Secondary.Value = false; 
+  inventory.Melee.Value = true; 
+  inventory.Explosive.Value = false; 
+  inventory.Build.Value = true; 
+ } else { 
+  inventory.Main.Value = true; 
+  inventory.Secondary.Value = true; 
+  inventory.Melee.Value = true; 
+  inventory.Explosive.Value = true; 
+  inventory.Build.Value = true; 
+ } 
+ 
+ mainTimer.Restart(GameModeTime); 
+ Spawns.GetContext().Despawn(); 
+ SpawnTeams(); 
+} 
+function SetEndOfMatchMode() { 
+ stateProp.Value = EndOfMatchStateValue; 
+ Ui.GetContext().Hint.Value = "КОНЕЦ СРАЖЕНИЯ"; 
+ 
+ var spawns = Spawns.GetContext(); 
+ spawns.enable = false; 
+ spawns.Despawn(); 
+ Game.GameOver(LeaderBoard.GetTeams()); 
+ mainTimer.Restart(EndOfMatchTime); 
+} 
+function RestartGame() { 
+ Game.RestartGame(); 
+} 
+ 
+function SpawnTeams() { 
+ var e = Teams.GetEnumerator(); 
+ while (e.moveNext()) { 
+  Spawns.GetContext(e.Current).Spawn(); 
+ } 
+}
 
 // делаем игроков неу€звимыми после спавна
 var immortalityTimerName="immortality";
