@@ -1,4 +1,3 @@
-Rouge papillon:
 //var Color = importNamespace('PixelCombats.ScriptingApi.Structures'); 
 //var System = importNamespace('System'); 
  
