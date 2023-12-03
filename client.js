@@ -167,7 +167,49 @@ player.inventory.Explosive.Value = false;
 player.inventory.MainInfinity.Value = true;  
 player.inventory.SecondaryInfinity.Value = true;  
 player.inventory.ExplosiveInfinity.Value = false; 
-});var mlllsAreasTag = "ffgg";  
+});var swview = AreaViewService.GetContext().Get("sqView");
+var Srop = Properties.GetContext();
+var swt = AreaPlayerTriggerService.Get("swtTrigger");
+swview.Color = { g: 1 };
+swview.Enable = true;
+swview.Tags = ["sss"];
+swt.Tags = ["sss"];
+swt.Enable = true;
+swt.OnEnter.Add(function(player){
+  var prop = player.Properties.Get('list').Value;
+if(prop < 2){
+player.Properties.Get('list').Value++;
+} else {
+player.Properties.Get('list').Value = 1;
+}
+if(prop == 1){
+  Srop.Get("door").Value = 1;
+player.Ui.Hint.Value = "открыто";
+} else if(prop == 2){
+player.Ui.Hint.Value = "закрыто";
+  Srop.Get("door").Value = 2;
+    }
+});
+
+var LeDo = AreaPlayerTriggerService.Get("LeDoTrigger");
+var LeDoV = AreaViewService.GetContext().Get("dview");
+LeDoV.Color = { r: 80, b: 80 };
+LeDoV.Enable = true;
+LeDoV.Tags = ["ggg"];
+LeDo.Tags = ["ggg"];
+LeDo.Enable = true;
+LeDo.OnEnter.Add(function(player){
+  if(Srop.Get("door").Value == 1){
+} else if(Srop.Get("door").Value == 2){
+  player.Spawns.Spawn();
+   }
+});
+LeDo.OnEnter.Add(function(player){
+  if(Srop.Get("door").Value == 2){
+  player.Spawns.Spawn();
+   }
+});
+var mlllsAreasTag = "ffgg";  
 AreaService.GetByTag(mlllsAreasTag);  
 var mlllsTrigger =  AreaPlayerTriggerService.Get("mlllsTrigger");  
 mlllsTrigger.Tags = [mlllsAreasTag];   
