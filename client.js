@@ -1,18 +1,6 @@
 //var Color = importNamespace('PixelCombats.ScriptingApi.Structures'); 
 //var System = importNamespace('System'); 
  
-// константы 
-var WaitingPlayersTime = 10; 
-var BuildBaseTime = 30; 
-var GameModeTime = 780; 
-var EndOfMatchTime = 10; 
- 
-// константы имен 
-var WaitingStateValue = ""; 
-var BuildModeStateValue = "BuildMode"; 
-var GameStateValue = "сражайтесь"; 
-var EndOfMatchStateValue = "EndOfMatch"; 
- 
 // посто€нные переменные 
 var mainTimer = Timers.GetContext().Get("Main"); 
 var stateProp = Properties.GetContext().Get("State"); 
@@ -716,19 +704,6 @@ Timers.OnPlayerTimer.Add(function(timer){
  timer.Player.Properties.Immortality.Value=false; 
 }); 
  
-// после каждой смерти игрока отнимаем одну смерть в команде 
-Properties.OnPlayerProperty.Add(function(context, value) { 
- if (value.Name !== "Deaths") return; 
- if (context.Player.Team == null) return; 
- context.Player.Team.Properties.Get("Deaths").Value--; 
-}); 
-// если в команде количество смертей занулилось то завершаем игру 
-Properties.OnTeamProperty.Add(function(context, value) { 
- if (value.Name !== "Deaths") return;
-
-if (value.Value <= 0) SetEndOfMatchMode(); 
-}); 
- 
 // счетчик спавнов 
 Spawns.OnSpawn.Add(function(player) { 
  ++player.Properties.Spawns.Value; 
@@ -744,9 +719,6 @@ Damage.OnKill.Add(function(player, killed) {
   player.Properties.Scores.Value += 100; 
  } 
 }); 
- 
-// задаем первое игровое состо€ние 
-SetWaitingMode(); 
  
 // состо€ни€ игры 
 function SetWaitingMode() { 
