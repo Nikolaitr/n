@@ -323,12 +323,7 @@ LeaderBoard.PlayerLeaderBoardValues = [
   Value: "pid", 
   DisplayName: "<B><color=lime>ID</color></B>", 
   ShortDisplayName: "<B><color=lime>ID</color></B>" 
- }, 
- { 
-  Value: "Scores", 
-  DisplayName: "<B><color=red>ДЕНЬГИ</color></B>", 
-  ShortDisplayName: "<B><color=red>ДЕНЬГИ</color></B>" 
- } 
+ }
 ]; 
 LeaderBoard.TeamLeaderBoardValue = { 
  Value: "Deaths", 
@@ -347,36 +342,7 @@ LeaderBoard.PlayersWeightGetter.Set(function(player) {
 // задаем что выводить вверху 
 Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "Deaths" }; 
 Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" }; 
- 
-// разрешаем вход в команды по запросу 
-Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player);}); 
-// спавн по входу в команду 
-Teams.OnPlayerChangeTeam.Add(function(player){ player.Spawns.Spawn()}); 
- 
-// делаем игроков неу€звимыми после спавна 
-var immortalityTimerName="immortality"; 
-Spawns.GetContext().OnSpawn.Add(function(player){ 
- player.Properties.Immortality.Value=true; 
- timer=player.Timers.Get(immortalityTimerName).Restart(5); 
-}); 
-Timers.OnPlayerTimer.Add(function(timer){ 
- if(timer.Id!=immortalityTimerName) return; 
- timer.Player.Properties.Immortality.Value=false; 
-}); 
- 
-// после каждой смерти игрока отнимаем одну смерть в команде 
-Properties.OnPlayerProperty.Add(function(context, value) { 
- if (value.Name !== "Deaths") return; 
- if (context.Player.Team == null) return; 
- context.Player.Team.Properties.Get("Deaths").Value--; 
-}); 
-// если в команде количество смертей занулилось то завершаем игру 
-Properties.OnTeamProperty.Add(function(context, value) { 
- if (value.Name !== "Deaths") return;
 
-if (value.Value <= 0) SetEndOfMatchMode(); 
-}); 
- 
 // счетчик спавнов 
 Spawns.OnSpawn.Add(function(player) { 
  ++player.Properties.Spawns.Value; 
@@ -392,27 +358,6 @@ Damage.OnKill.Add(function(player, killed) {
   player.Properties.Scores.Value += 100; 
  } 
 }); 
- 
-// настройка переключени€ режимов 
-mainTimer.OnTimer.Add(function() { 
- switch (stateProp.Value) { 
- case WaitingStateValue: 
-  SetBuildMode(); 
-  break; 
- case BuildModeStateValue: 
-  SetGameMode(); 
-  break; 
- case GameStateValue: 
-  SetEndOfMatchMode(); 
-  break; 
- case EndOfMatchStateValue: 
-  RestartGame(); 
-  break; 
- } 
-}); 
- 
-// задаем первое игровое состо€ние 
-SetWaitingMode(); 
  
 // состо€ни€ игры 
 function SetWaitingMode() { 
