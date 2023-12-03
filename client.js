@@ -101,7 +101,7 @@ Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player);});
 Teams.OnPlayerChangeTeam.Add(function(player){ player.Spawns.Spawn()}); 
  
 // ������ ��������� 
-Ui.getContext().Hint.Value = "Hint/сражайтесь"; 
+Ui.getContext().Hint.Value = "сражайтесь"; 
  
 // ������������ ��������� 
 var inventory = Inventory.GetContext(); 
