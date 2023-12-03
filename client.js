@@ -277,3 +277,5 @@ Timers.OnPlayerTimer.Add(function(timer){
 
 // ������������ ����� 
 Spawns.GetContext().RespawnTime.Value = 0;
+
+contextedProperties.GetContext().MaxHp.Value = 500;
