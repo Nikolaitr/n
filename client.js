@@ -101,12 +101,13 @@ Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player);});
 Teams.OnPlayerChangeTeam.Add(function(player){ player.Spawns.Spawn()}); 
  
 // ������ ��������� 
-Ui.getContext().Hint.Value = "сражайтесь"; 
+Ui.getContext().Hint.Value = "Hint/Buildbase"; 
  
 // ������������ ��������� 
 var inventory = Inventory.GetContext(); 
 inventory.Main.Value = true; 
-inventory.Secondary.Value = true.Melee.Value = true; 
+inventory.Secondary.Value = true;
+inventory.Melee.Value = true; 
 inventory.Explosive.Value = true; 
 inventory.Build.Value = true; 
 inventory.Build.Value = true; 
