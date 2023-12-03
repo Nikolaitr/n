@@ -9,7 +9,7 @@ Build.GetContext().RemoveQuad.Value = GameMode.Parameters.GetBool("RemoveQuad");
 Build.GetContext().FlyEnable.Value = GameMode.Parameters.GetBool("Fly");  
  
 // ������ ��������� ������ ��� ����� 
-BreackGraph.BreackAll = true; 
+BreackGraph.PlayerBlockBoost = true; 
 // ���������� ���������� ������ 
 Ui.GetContext().QuadsCount.Value = true; 
 // ��� ������������ �����  
