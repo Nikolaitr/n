@@ -26,7 +26,8 @@ Build.GetContext().FlyEnable.Value = false;
 // ��������� ���� 
 Properties.GetContext().GameModeName.Value = "сражайтесь"; 
 // создаем команды 
-Teams.Add("Blue", "<i><B><color=white>◅ БЕЛЫЕ ▻</color></B></i>", { r: 87, g: 109, b: 100 }); 
+Teams.Add("Blue", "<size=26><color=#000000>Р</color><color=#000000>У</color><color=#f9ff00>С</color><color=#f6ff00>С</color><color=#f4ff00>К</color><color=#f4fff9>И</color><color=#fffefc>Е</color></size>", { g: 20, b: 100 });
+
 
 Teams.Add("Red", "<size=26><color=#000dff>Ф</color><color=#0003ff>Р</color><color=#0200ff>А</color><color=#fefff7>Н</color><color=#fefff1>Ц</color><color=#ff0100>У</color><color=#ff0f00>З</color><color=#ff0500>Ы</color></size>", { r: 20, p: 200, b: 150 });
 var blueTeam = Teams.Get("Blue"); 
