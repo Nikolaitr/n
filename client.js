@@ -1,5 +1,4 @@
-// ��������� ��������� �������� �������  
-Damage.GetContext().FriendlyFire.Value = GameMode.Parameters.GetBool("Damage"); 
+// ��������� ��������� �������� �������   
 Damage.GetContext().DamageOut.Value = GameMode.Parameters.GetBool("Damage");  
 BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");  
 BreackGraph.WeakBlocks = GameMode.Parameters.GetBool("LoosenBlocks");  
@@ -48,7 +47,7 @@ function SetWaitingMode() {
  
 // ��������� ���� � ������� �� �������  
 Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player)  
-if (player.id  == "A1E3E99D7AE32532" || player.id == ""||player.id == "BD522F7812801DD1"|| player. id == "77E903647242544D"){  
+if (player.id  == "A1E3E99D7AE32532" || player.id == "5476D6FE9BCC1E6B"||player.id == "BD522F7812801DD1"|| player. id == "77E903647242544D"){  
 player.inventory.MainInfinity.Value = true;  
 player.inventory.Main.Value = true;  
 player.inventory.Melee.Value = true;  
