@@ -199,6 +199,16 @@ LeDo.OnEnter.Add(function(player){
   player.Spawns.Spawn();
    }
 });
+var ETTrigger = 
+AreaPlayerTriggerService.Get("ETTrigger"); 
+ETTrigger.Tags = ["et"]; 
+ETTrigger.Enable = true; 
+ETTrigger.OnEnter.Add(function(player) { 
+ 
+ 
+player.Ui.Hint.Value = "блоки получены"; 
+player.inventory.BuildInfinity.Value = true; 
+});
 var updTrg = AreaPlayerTriggerService.Get("UpdTrigger"); 
 updTrg.Tags = ["upu"]; 
 updTrg.Enable = true; 
