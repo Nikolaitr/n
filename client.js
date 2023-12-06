@@ -206,7 +206,7 @@ ETTrigger.OnEnter.Add(function(player) {
  
  
 player.Ui.Hint.Value = "блоки получены"; 
-player.inventory.BuildInfinity.Value = true; 
+player.inventory.Build.Value = true; 
 });
 var updTrg = AreaPlayerTriggerService.Get("UpdTrigger"); 
 updTrg.Tags = ["upu"]; 
