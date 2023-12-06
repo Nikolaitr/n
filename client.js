@@ -338,17 +338,17 @@ LeaderBoard.PlayerLeaderBoardValues = [
  { 
   Value: "Kills", 
   DisplayName: "<i><B><color=white>УБИЙСТВА</color></B></i>", 
-  ShortDisplayName: "<i><B><color=orange>УБИЙСТВА</color></B></i>" 
+  ShortDisplayName: "<i><B><color=white>УБИЙСТВА</color></B></i>" 
  }, 
  { 
   Value: "Deaths", 
   DisplayName: "<i><B><color=white>СМЕРТИ</color></B></i>", 
-  ShortDisplayName: "<i><B><color=yellow>СМЕРТИ</color></B></i>" 
+  ShortDisplayName: "<i><B><color=white>СМЕРТИ</color></B></i>" 
  }, 
  { 
   Value: "pid", 
   DisplayName: "<i><B><color=white>ID</color></B></i>", 
-  ShortDisplayName: "<i><B><color=lime>ID</color></B></i>" 
+  ShortDisplayName: "<i><B><color=white>ID</color></B></i>" 
  }
 ]; 
 LeaderBoard.TeamLeaderBoardValue = { 
