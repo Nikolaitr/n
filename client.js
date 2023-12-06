@@ -337,17 +337,17 @@ player.Properties.Get("pid").Value = player.Id.slice(0,8) + "                   
 LeaderBoard.PlayerLeaderBoardValues = [ 
  { 
   Value: "Kills", 
-  DisplayName: "<B><color=orange>УБИЙСТВА</color></B>", 
+  DisplayName: "<i><B><color=white>УБИЙСТВА</color></B></i>", 
   ShortDisplayName: "<B><color=orange>УБИЙСТВА</color></B>" 
  }, 
  { 
   Value: "Deaths", 
-  DisplayName: "<B><color=yellow>СМЕРТИ</color></B>", 
+  DisplayName: "<i><B><color=white>СМЕРТИ</color></B></i>", 
   ShortDisplayName: "<B><color=yellow>СМЕРТИ</color></B>" 
  }, 
  { 
   Value: "pid", 
-  DisplayName: "<B><color=lime>ID</color></B>", 
+  DisplayName: "<i><B><color=white>ID</color></B></i>", 
   ShortDisplayName: "<B><color=lime>ID</color></B>" 
  }
 ]; 
