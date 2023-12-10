@@ -210,6 +210,20 @@ ETTrigger.OnEnter.Add(function(player) {
 player.Ui.Hint.Value = "блоки получены"; 
 player.inventory.Build.Value = true; 
 });
+VAreaTag = "т";
+var VTrigger = AreaPlayerTriggerService.Get("VTrigger"); 
+VTrigger.Tags = [VAreaTag]; 
+VTrigger.Enable = true; 
+VTrigger.OnEnter.Add(function (player) {       
+Teams.Get("Blue").Add(player);
+});
+VRAreaTag = "к";
+var VTrigger = AreaPlayerTriggerService.Get("VRTrigger"); 
+VRTrigger.Tags = [VRAreaTag]; 
+VRTrigger.Enable = true; 
+VRTrigger.OnEnter.Add(function (player) {       
+Teams.Get("Red").Add(player);
+});
 var updTrg = AreaPlayerTriggerService.Get("UpdTrigger"); 
 updTrg.Tags = ["upu"]; 
 updTrg.Enable = true; 
