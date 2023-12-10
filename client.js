@@ -120,7 +120,8 @@ pvpTrigger.OnEnter.Add(function (player){
 player.Ui.Hint.Value = "онлайн: "+ Players.Count;});  
 pvpTrigger.OnExit.Add(function (player){  
 player.Ui.Hint.Value = " ";  
-});var banAreaTag = "a";  
+});
+var banAreaTag = "a";  
 var ViewbanParameterName = "Vivewban";  
 var banAreas = AreaService.GetByTag(banAreaTag);  
 var banView = AreaViewService.GetContext().Get("banView");  
