@@ -7,7 +7,7 @@ Build.GetContext().RemoveQuad.Value = GameMode.Parameters.GetBool("RemoveQuad");
 Build.GetContext().FlyEnable.Value = GameMode.Parameters.GetBool("Fly");  
 BreackGraph.BreackAll = false; 
 BreackGraph.OnlyPlayerBlocksDmg = true; 
-BreackGraph.WeakBlocks = true; 
+BreackGraph.WeakBlocks = false; 
 
 // ��� ������������ �����  
 Build.GetContext().Pipette.Value = false;  
