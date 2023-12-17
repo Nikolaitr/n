@@ -6,6 +6,7 @@ Build.GetContext().FloodFill.Value = GameMode.Parameters.GetBool("FloodFill");
 Build.GetContext().FillQuad.Value = GameMode.Parameters.GetBool("FillQuad");  
 Build.GetContext().RemoveQuad.Value = GameMode.Parameters.GetBool("RemoveQuad");  
 Build.GetContext().FlyEnable.Value = GameMode.Parameters.GetBool("Fly");  
+BreackGraph.BreackAll = false; 
 
 // ��� ������������ �����  
 Build.GetContext().Pipette.Value = false;  
