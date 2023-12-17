@@ -1,7 +1,6 @@
 // ��������� ��������� �������� �������   
 Damage.GetContext().FriendlyFire.Value = false;
 Damage.GetContext().DamageOut.Value = GameMode.Parameters.GetBool("Damage");  
-BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("PartialDesruction");    
 Build.GetContext().FloodFill.Value = GameMode.Parameters.GetBool("FloodFill");  
 Build.GetContext().FillQuad.Value = GameMode.Parameters.GetBool("FillQuad");  
 Build.GetContext().RemoveQuad.Value = GameMode.Parameters.GetBool("RemoveQuad");  
