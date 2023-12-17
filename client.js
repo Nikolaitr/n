@@ -9,9 +9,6 @@ BreackGraph.BreackAll = false;
 BreackGraph.OnlyPlayerBlocksDmg = true; 
 BreackGraph.WeakBlocks = false; 
 
-//
-Build.GetContext().BlocksSet.Value = false;
-
 // ��� ������������ �����  
 Build.GetContext().Pipette.Value = false;  
 Build.GetContext().BalkLenChange.Value = false;  
