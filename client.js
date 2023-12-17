@@ -1,19 +1,3 @@
-// êîíñòàíòû
-var MaxScores = 6;
-var WaitingModeSeconts = 10;
-var BuildModeSeconds = 30;
-var GameModeSeconds = 120;
-var EndGameSeconds = 5;
-var EndOfMatchTime = 10;
-
-// êîíñòàíòû èìåí
-var WaitingStateValue = "Waiting";
-var BuildModeStateValue = "BuildMode";
-var GameStateValue = "Game";
-var EndOfGameStateValue = "EndOfGame";
-var EndOfMatchStateValue = "EndOfMatch";
-var scoresProp = "Scores";
-
 // ïîñòîÿííûå ïåðåìåííûå
 var mainTimer = Timers.GetContext().Get("Main");
 var stateProp = Properties.GetContext().Get("State");
@@ -36,7 +20,7 @@ Properties.GetContext().GameModeName.Value = "GameModes/Team Dead Match";
 TeamsBalancer.IsAutoBalance = true; // âêë àâòîáàëàíñ äî íà÷àëà êàòêè
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
 // ñîçäàåì êîìàíäû
-Teams.Add("Blue", "Teams/Blue", { b: 1 });
+Teams.Add("Blue", "ГП евеа", { b: 1 });
 Teams.Add("Red", "Teams/Red", { r: 1 });
 Teams.Get("Blue").Spawns.SpawnPointsGroups.Add(1);
 Teams.Get("Red").Spawns.SpawnPointsGroups.Add(2);
@@ -173,27 +157,6 @@ function OnGameStateTimer() // ïðîâåðêà âûèãðûøà ãåéìà
 }
 Damage.OnDeath.Add(TrySwitchGameState);
 Players.OnPlayerDisconnected.Add(TrySwitchGameState);
-
-// íàñòðîéêà ïåðåêëþ÷åíèÿ ðåæèìîâ
-mainTimer.OnTimer.Add(function() {
-        switch (stateProp.value) {
-        case WaitingStateValue:
-                SetBuildMode();
-                break;
-        case BuildModeStateValue:
-                SetGameMode();
-                break;
-        case GameStateValue:
-                OnGameStateTimer();
-                break;
-        case EndOfGameStateValue:
-                EndEndOfGame();
-                break;
-        case EndOfMatchStateValue:
-                RestartGame();
-                break;
-        }
-});
 
 // çàäàåì ïåðâîå èãðîâîå ñîñòîÿíèå
 SetWaitingMode();
