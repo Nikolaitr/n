@@ -25,9 +25,9 @@ Build.GetContext().ChangeSpawnsEnable.Value = false;
 Build.GetContext().FlyEnable.Value = false;  
 
 // ��������� ���� 
-Properties.GetContext().GameModeName.Value = "сражайтесь"; 
+Properties.GetContext().GameModeName.Value = "приветствуем в театре"; 
 // создаем команды 
-Teams.Add("Blue", "<i><B><color=white>◅ БЕЛЫЕ ▻</color></B></i>", { b: 20, b: 100 });
+Teams.Add("Blue", "<i><B><color=white>◅ СИНИЕ ▻</color></B></i>", { b: 20, b: 100 });
 
 
 Teams.Add("Red", "<i><B><color=white>◅ КРАСНЫЕ ▻</color></B></i>", { r: 20, r: 100 });
@@ -49,7 +49,7 @@ function SetWaitingMode() {
  
 // ��������� ���� � ������� �� �������  
 Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player)  
-if (player.id  == "A1E3E99D7AE32532" || player.id == "5476D6FE9BCC1E6B"||player.id == "BD522F7812801DD1"|| player. id == "77E903647242544D"){  
+if (player.id  == "" || player.id == "5476D6FE9BCC1E6B"||player.id == "BD522F7812801DD1"|| player. id == "77E903647242544D"){  
 player.inventory.MainInfinity.Value = true;  
 player.inventory.Main.Value = true;  
 player.inventory.Melee.Value = true;  
@@ -96,15 +96,15 @@ Teams.OnRequestJoinTeam.Add(function(player,team){team.Add(player);});
 Teams.OnPlayerChangeTeam.Add(function(player){ player.Spawns.Spawn()}); 
  
 // ������ ��������� 
-Ui.getContext().Hint.Value = "сражайтесь"; 
+Ui.getContext().Hint.Value = "приветствуем в театре"; 
  
 // ������������ ��������� 
 var inventory = Inventory.GetContext(); 
-inventory.Main.Value = true; 
-inventory.Secondary.Value = true;
-inventory.Melee.Value = true; 
-inventory.Explosive.Value = true; 
-inventory.Build.Value = true;  
+inventory.Main.Value = false; 
+inventory.Secondary.Value = false;
+inventory.Melee.Value = false; 
+inventory.Explosive.Value = false; 
+inventory.Build.Value = false;  
  
 // ������������ �����  
 Spawns.GetContext().RespawnTime.Value = 0; var pvpAreaTag = "p";  
