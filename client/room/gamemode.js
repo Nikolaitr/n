@@ -3,8 +3,6 @@ import * as BASIC from 'pixel_combats/basic'
 import { Build, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns } from 'pixel_combats/room';
 import * as peace from './options.js';
 import * as teams from './default_teams.js';
-import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, 
-        Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, Build, AreaPlayerTriggerService } from 'pixel_combats/room';
 
 // разрешения
 Damage.FriendlyFire = false;
@@ -41,6 +39,7 @@ Ui.getContext().Hint.Value = "Hint/BuildBase";
 // конфигурация инвентаря
 peace.set_editor_inventory();
 
+//зона 
 WaitingPlayersTime = 1;
 BuildBaseTime = 1;
 ModeTime = 1;
@@ -101,7 +100,6 @@ yellowView.Color = {r:20,b:100,g:100}
  stateProp.Value = WStateValue;
  mainTimer.Restart(BTime);
 }
-});
 
 // моментальный спавн
 Spawns.GetContext().RespawnTime.Value = 0;
