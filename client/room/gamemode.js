@@ -41,13 +41,37 @@ Ui.getContext().Hint.Value = "Hint/BuildBase";
 // конфигурация инвентаря
 peace.set_editor_inventory();
 
-//зоны
+WaitingPlayersTime = 1;
+BuildBaseTime = 1;
+ModeTime = 1;
+BaseTime = 1;
+BTime = 1;
+WaitingStateValue = "Waiting";
+BuildModeStateValue = "BuildMode";
+ModeStateValue = "Mode";
+BaseStateValue = "Base";
+WStateValue = "W";
+mainTimer = Timers.GetContext().Get("Main");
+stateProp = Properties.GetContext().Get("State");
+mainTimer.OnTimer.Add(function() {
+switch (stateProp.Value) {
+case WaitingStateValue:SetBuildMode();
+break;
+case BuildModeStateValue: SetMode();
+break;
+case ModeStateValue : SetM();
+break;
+case BaseStateValue: Set();
+break;
+case WStateValue: SetWaitingMode();
+ }
+});
 var yellowView = AreaViewService.GetContext().Get("YellowView");
 yellowView.Color = {r:0};
-yellowView.Tags = ["mak"];
+yellowView.Tags = ["buy"];
 yellowView.Enable = true;
 var redtrigger = AreaPlayerTriggerService.Get("redTrigger");
-redtrigger.Tags = ["mak"];
+redtrigger.Tags = ["buy"];
 redtrigger.Enable = true;
 redtrigger.OnEnter.Add(function(player){});
 
@@ -63,19 +87,19 @@ yellowView.Color = {b:1}
  mainTimer.Restart(BuildBaseTime);
 }
 function SetMode() {
-yellowView.Color = {g:1}
+yellowView.Color = {r:1,b:1,g:1}
  stateProp.Value = ModeStateValue;
  mainTimer.Restart(ModeTime);
 }
 function SetM() {
-yellowView.Color = {r:1, g:1}
+yellowView.Color = {g:1}
  stateProp.Value = BaseStateValue;
  mainTimer.Restart(BaseTime);
 }
 function Set() {
-yellowView.Color = {r:20, g:100, b:100}
+yellowView.Color = {r:20,b:100,g:100}
  stateProp.Value = WStateValue;
- mainTimer.Restart(BaseTime);
+ mainTimer.Restart(BTime);
 }
 });
 
